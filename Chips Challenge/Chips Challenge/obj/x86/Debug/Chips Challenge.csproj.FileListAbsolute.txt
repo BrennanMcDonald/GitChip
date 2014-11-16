@@ -1,0 +1,17 @@
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Chips Challenge.exe
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Chips Challenge.pdb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.exe
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.pdb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\Font1.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\wall.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\floor.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redKey.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\chip.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redDoor.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueKey.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueDoor.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenDoor.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb
+E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.csprojResolveAssemblyReference.cache

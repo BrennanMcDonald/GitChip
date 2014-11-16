@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chips Challenge", "Chips Challenge\Chips Challenge\Chips Challenge.csproj", "{C4828091-6439-434B-9627-690DA7541428}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Chips ChallengeContent", "Chips Challenge\Chips ChallengeContent\Chips ChallengeContent.contentproj", "{5E0C895B-98FC-451C-969B-3E16820B58BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4828091-6439-434B-9627-690DA7541428}.Debug|x86.ActiveCfg = Debug|x86
+		{C4828091-6439-434B-9627-690DA7541428}.Debug|x86.Build.0 = Debug|x86
+		{C4828091-6439-434B-9627-690DA7541428}.Release|x86.ActiveCfg = Release|x86
+		{C4828091-6439-434B-9627-690DA7541428}.Release|x86.Build.0 = Release|x86
+		{5E0C895B-98FC-451C-969B-3E16820B58BA}.Debug|x86.ActiveCfg = Debug|x86
+		{5E0C895B-98FC-451C-969B-3E16820B58BA}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

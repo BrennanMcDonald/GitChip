@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>wall.png</Source>
+      <Name>wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\wall.xnb</Output>
+      <Time>2014-11-12T17:54:06.6947856-05:00</Time>
+    </Item>
+    <Item>
+      <Source>floor.png</Source>
+      <Name>floor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\floor.xnb</Output>
+      <Time>2014-11-12T17:54:05.5005403-05:00</Time>
+    </Item>
+    <Item>
+      <Source>redKey.png</Source>
+      <Name>redKey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redKey.xnb</Output>
+      <Time>2014-11-12T17:54:06.0504332-05:00</Time>
+    </Item>
+    <Item>
+      <Source>chip.png</Source>
+      <Name>chip</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\chip.xnb</Output>
+      <Time>2014-11-12T17:54:06.6769591-05:00</Time>
+    </Item>
+    <Item>
+      <Source>redDoor.png</Source>
+      <Name>redDoor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redDoor.xnb</Output>
+      <Time>2014-11-12T21:38:44.9436977-05:00</Time>
+    </Item>
+    <Item>
+      <Source>blueKey.png</Source>
+      <Name>blueKey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueKey.xnb</Output>
+      <Time>2014-11-12T21:57:19.7063799-05:00</Time>
+    </Item>
+    <Item>
+      <Source>blueDoor.png</Source>
+      <Name>blueDoor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueDoor.xnb</Output>
+      <Time>2014-11-12T22:02:24.2935215-05:00</Time>
+    </Item>
+    <Item>
+      <Source>greenDoor.png</Source>
+      <Name>greenDoor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenDoor.xnb</Output>
+      <Time>2014-11-12T22:08:31.4880155-05:00</Time>
+    </Item>
+    <Item>
+      <Source>greenKey.png</Source>
+      <Name>greenKey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb</Output>
+      <Time>2014-11-12T22:17:04.1716513-05:00</Time>
+    </Item>
+    <Item>
+      <Source>bg.jpg</Source>
+      <Name>bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb</Output>
+      <Time>2014-11-13T11:38:17.4202433-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Font1.spritefont</Source>
+      <Name>Font1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\Font1.xnb</Output>
+      <Time>2014-11-12T19:30:41.66777-05:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips ChallengeContent\</RootDirectory>
+      <LoggerRootDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips ChallengeContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2014-09-21T01:13:14.6071842-05:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
