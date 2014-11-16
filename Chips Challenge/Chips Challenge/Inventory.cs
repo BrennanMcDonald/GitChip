@@ -10,13 +10,15 @@ namespace Chips_Challenge
         public int blueKeys, 
             redKeys, 
             greenKeys, 
-                goldKeys;
+            goldKeys,
+            chips;
         public Inventory()
         {
             blueKeys = 0;
             redKeys = 0;
             greenKeys = 0;
             goldKeys = 0;
+            chips = 0;
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Chips_Challenge
 {
     public class ChipsChallengeMain : Microsoft.Xna.Framework.Game
     {
+        // Constants to deal with tile values
+        // TODO: Create a Map Tile struct that has a texture, numerical value and ASCII value
         const int floor = 48,
             wall = 53,
             redKey = 49,
@@ -35,38 +37,40 @@ namespace Chips_Challenge
             goldDoor = 57,
             portal = 47,
             chip = 42;
-            
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private SpriteFont Font1;
-        private KeyboardState prevKeys;
 
-        private Inventory inv;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch _spriteBatch;
+        private SpriteFont _menuFont;
+        private KeyboardState _prevKeys;
+        private Player _player = new Player();
 
         public Texture2D wallTexture,
             floorTexture,
             redKeyTexture,
-            chipTexture,
+            playerTexture,
             redDoorTexture,
             blueKeyTexture,
             blueDoorTexture,
             greenDoorTexture,
             greenKeyTexture,
-            backgroundTexture;
+            backgroundTexture,
+            chipTexture,
+            portalTexture,
+            playerPortalTexture;
 
         public Vector2 boardOffset = new Vector2(50, 50);
-        public Point player;
         public Queue<TileMap> levelList = new Queue<TileMap>();
         public TileMap map;
         public bool firstRun = true;
+
 
         public ChipsChallengeMain()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = 
+            graphics.PreferredBackBufferHeight =
                 9 * 32 + (2 * (int)boardOffset.Y);
-            graphics.PreferredBackBufferWidth = 
+            graphics.PreferredBackBufferWidth =
                 9 * 32 + 200 + (2 * (int)boardOffset.X);
             Content.RootDirectory = "Content";
         }
@@ -78,9 +82,12 @@ namespace Chips_Challenge
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             wallTexture = Content.Load<Texture2D>("wall");
             floorTexture = Content.Load<Texture2D>("floor");
+            portalTexture = Content.Load<Texture2D>("portal");
+            playerPortalTexture = Content.Load<Texture2D>("portalPlayer");
 
             redKeyTexture = Content.Load<Texture2D>("redKey");
             blueKeyTexture = Content.Load<Texture2D>("blueKey");
@@ -90,12 +97,13 @@ namespace Chips_Challenge
             blueDoorTexture = Content.Load<Texture2D>("blueDoor");
             greenDoorTexture = Content.Load<Texture2D>("greenDoor");
 
-            chipTexture = Content.Load<Texture2D>("chip");
+            playerTexture = Content.Load<Texture2D>("player");
             backgroundTexture = Content.Load<Texture2D>("bg");
+            chipTexture = Content.Load<Texture2D>("chip");
 
-            Font1 = Content.Load<SpriteFont>("Font1");
-            inv = new Inventory();
-
+            _menuFont = Content.Load<SpriteFont>("Font1");
+            _player.inventory = new Inventory();
+            // Add leves to the Level Queue
             levelList.Enqueue(new TileMap("level.txt"));
             levelList.Enqueue(new TileMap("level2.txt"));
             levelList.Enqueue(new TileMap("level3.txt"));
@@ -107,280 +115,305 @@ namespace Chips_Challenge
 
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
+
+            // If the game is on its first run dequeue the first map and set the start position
+            // Reason this isnt grouped with the rest is because 
+            // I was having troubles with a method of only dequeueing one map
+            // I could set the first start character a portal and just
+            // have it work with every portal after
             if (firstRun)
             {
                 map = levelList.Dequeue();
                 firstRun = false;
-                player = map.startPos;
-            }
-            if (map.Rows[(int)player.X].Columns[(int)player.Y].TileID == portal)
+                _player.Position = map.startPos;
+            };
+            // TODO: Clean up key handling
+            KeyboardState ks = Keyboard.GetState();
+            if (ks != _prevKeys)
             {
-                map = levelList.Dequeue();
-                player = map.startPos;
+                if (ks.IsKeyDown(Keys.Right))
+                {
+                    if ((int)_player.Position.X + 1 < map.MapWidth)
+                    {
+                        switch (map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID)
+                        {
+                            case redDoor:
+                                if (_player.inventory.redKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID = floor;
+                                    _player.inventory.redKeys--;
+                                }
+                                break;
+                            case greenDoor:
+                                if (_player.inventory.greenKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID = floor;
+                                    _player.inventory.greenKeys--;
+                                }
+                                break;
+                            case blueDoor:
+                                if (_player.inventory.blueKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID = floor;
+                                    _player.inventory.blueKeys--;
+                                }
+                                break;
+                            case goldDoor:
+                                if (_player.inventory.goldKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID = floor;
+                                    _player.inventory.goldKeys--;
+                                }
+                                break;
+                        }
+                        if (map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X + 1].TileID < wall)
+                            _player.Position.X += 1;
+                    }
+                }
+                else if (ks.IsKeyDown(Keys.Left))
+                {
+                    if (_player.Position.X > 0)
+                    {
+                        switch (map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID)
+                        {
+                            case redDoor:
+                                if (_player.inventory.redKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID = floor;
+                                    _player.inventory.redKeys--;
+                                }
+                                break;
+                            case greenDoor:
+                                if (_player.inventory.greenKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID = floor;
+                                    _player.inventory.greenKeys--;
+                                }
+                                break;
+                            case blueDoor:
+                                if (_player.inventory.blueKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID = floor;
+                                    _player.inventory.blueKeys--;
+                                }
+                                break;
+                            case goldDoor:
+                                if (_player.inventory.goldKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID = floor;
+                                    _player.inventory.goldKeys--;
+                                }
+                                break;
+                        }
+                        if (map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X - 1].TileID < wall)
+                            _player.Position.X -= 1;
+                    }
+                }
+                else if (ks.IsKeyDown(Keys.Down))
+                {
+                    if (_player.Position.Y + 1 < map.MapHeight)
+                    {
+                        switch (map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID)
+                        {
+                            case redDoor:
+                                if (_player.inventory.redKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.redKeys--;
+                                }
+                                break;
+                            case greenDoor:
+                                if (_player.inventory.greenKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.greenKeys--;
+                                }
+                                break;
+                            case blueDoor:
+                                if (_player.inventory.blueKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.blueKeys--;
+                                }
+                                break;
+                            case goldDoor:
+                                if (_player.inventory.goldKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.goldKeys--;
+                                }
+                                break;
+                        }
+                        if (map.Rows[(int)_player.Position.Y + 1].Columns[(int)_player.Position.X].TileID < wall)
+                            _player.Position.Y += 1;
+                    }
+                }
+                else if (ks.IsKeyDown(Keys.Up))
+                {
+                    if (_player.Position.Y > 0)
+                    {
+                        switch (map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID)
+                        {
+                            case redDoor:
+                                if (_player.inventory.redKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.redKeys--;
+                                }
+                                break;
+                            case greenDoor:
+                                if (_player.inventory.greenKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.greenKeys--;
+                                }
+                                break;
+                            case blueDoor:
+                                if (_player.inventory.blueKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.blueKeys--;
+                                }
+                                break;
+                            case goldDoor:
+                                if (_player.inventory.goldKeys > 0)
+                                {
+                                    map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID = floor;
+                                    _player.inventory.goldKeys--;
+                                }
+                                break;
+
+
+                        }
+                        if (map.Rows[(int)_player.Position.Y - 1].Columns[(int)_player.Position.X].TileID < wall)
+                            _player.Position.Y -= 1;
+                    }
+                }
             }
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                    this.Exit();
-                KeyboardState ks = Keyboard.GetState();
-                if (ks != prevKeys)
-                {
-                    if (ks.IsKeyDown(Keys.Right))
+            // Add keys to inventory and handle map control.
+            switch (map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID)
+            {
+                case redKey:
+                    _player.inventory.redKeys++;
+                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID = floor;
+                    break;
+                case blueKey:
+                    _player.inventory.blueKeys++;
+                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID = floor;
+                    break;
+                case greenKey:
+                    _player.inventory.greenKeys++;
+                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID = floor;
+                    break;
+                case portal:
+                    if (levelList.Count > 0 && _player.inventory.chips >= map.chipCount)
                     {
-                        if ((int)player.X + 1 < map.MapWidth)
-                        {
-                            switch (map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID)
-                            {
-                                case redDoor:
-                                    if (inv.redKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID = floor;
-                                        inv.redKeys--;
-                                    }
-                                    break;
-                                case greenDoor:
-                                    if (inv.greenKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID = floor;
-                                        inv.greenKeys--;
-                                    }
-                                    break;
-                                case blueDoor:
-                                    if (inv.blueKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID = floor;
-                                        inv.blueKeys--;
-                                    }
-                                    break;
-                                case goldDoor:
-                                    if (inv.goldKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID = floor;
-                                        inv.goldKeys--;
-                                    }
-                                    break;
-                            }
-                            if (map.Rows[(int)player.Y].Columns[(int)player.X + 1].TileID < wall)
-                                player.X += 1;
-                        }
+                        map = levelList.Dequeue();
+                        _player.Position = map.startPos;
+                        _player.inventory = new Inventory();
                     }
-                    else if (ks.IsKeyDown(Keys.Left))
-                    {
-                        if (player.X > 0)
-                        {
-                            switch (map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID)
-                            {
-                                case redDoor:
-                                    if (inv.redKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID = floor;
-                                        inv.redKeys--;
-                                    }
-                                    break;
-                                case greenDoor:
-                                    if (inv.greenKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID = floor;
-                                        inv.greenKeys--;
-                                    }
-                                    break;
-                                case blueDoor:
-                                    if (inv.blueKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID = floor;
-                                        inv.blueKeys--;
-                                    }
-                                    break;
-                                case goldDoor:
-                                    if (inv.goldKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID = floor;
-                                        inv.goldKeys--;
-                                    }
-                                    break;
-                            }
-                            if (map.Rows[(int)player.Y].Columns[(int)player.X - 1].TileID < wall)
-                                player.X -= 1;
-                        }
-                    }
-                    else if (ks.IsKeyDown(Keys.Down))
-                    {
-                        if (player.Y + 1 < map.MapHeight)
-                        {
-                            switch (map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID)
-                            {
-                                case redDoor:
-                                    if (inv.redKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID = floor;
-                                        inv.redKeys--;
-                                    }
-                                    break;
-                                case greenDoor:
-                                    if (inv.greenKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID = floor;
-                                        inv.greenKeys--;
-                                    }
-                                    break;
-                                case blueDoor:
-                                    if (inv.blueKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID = floor;
-                                        inv.blueKeys--;
-                                    }
-                                    break;
-                                case goldDoor:
-                                    if (inv.goldKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID = floor;
-                                        inv.goldKeys--;
-                                    }
-                                    break;
-                            }
-                            if (map.Rows[(int)player.Y + 1].Columns[(int)player.X].TileID < wall)
-                                player.Y += 1;
-                        }
-                    }
-                    else if (ks.IsKeyDown(Keys.Up))
-                    {
-                        if (player.Y > 0)
-                        {
-                            switch (map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID)
-                            {
-                                case redDoor:
-                                    if (inv.redKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID = floor;
-                                        inv.redKeys--;
-                                    }
-                                    break;
-                                case greenDoor:
-                                    if (inv.greenKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID = floor;
-                                        inv.greenKeys--;
-                                    }
-                                    break;
-                                case blueDoor:
-                                    if (inv.blueKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID = floor;
-                                        inv.blueKeys--;
-                                    }
-                                    break;
-                                case goldDoor:
-                                    if (inv.goldKeys > 0)
-                                    {
-                                        map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID = floor;
-                                        inv.goldKeys--;
-                                    }
-                                    break;
+                    else if (levelList.Count <= 0)
+                        this.Exit();
+                    break;
+                case chip:
+                    _player.inventory.chips++;
+                    map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID = floor;
+                    break;
 
-                            }
-                            if (map.Rows[(int)player.Y - 1].Columns[(int)player.X].TileID < wall)
-                                player.Y -= 1;
-                        }
-                    }
-                }
-
-                if (map.Rows[(int)player.Y].Columns[(int)player.X].TileID == redKey)
-                {
-                    inv.redKeys++;
-                    map.Rows[(int)player.Y].Columns[(int)player.X].TileID = floor;
-                }
-                if (map.Rows[(int)player.Y].Columns[(int)player.X].TileID == blueKey)
-                {
-                    inv.blueKeys++;
-                    map.Rows[(int)player.Y].Columns[(int)player.X].TileID = floor;
-                }
-                if (map.Rows[(int)player.Y].Columns[(int)player.X].TileID == greenKey)
-                {
-                    inv.greenKeys++;
-                    map.Rows[(int)player.Y].Columns[(int)player.X].TileID = floor;
-                }
-                if (map.Rows[(int)player.Y].Columns[(int)player.X].TileID == portal)
-                    map = levelList.Dequeue();
-                prevKeys = ks;
-                base.Update(gameTime);
+            }
+            // Watch keystates so the user cant hold down keys
+            _prevKeys = ks;
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
-            spriteBatch.Begin();
+            _spriteBatch.Begin();
             // Draw Background
-            spriteBatch.Draw(floorTexture,
+            _spriteBatch.Draw(floorTexture,
                 new Rectangle((int)boardOffset.X - 6, (int)boardOffset.Y - 6, map.MapWidth * 32 + 18, map.MapHeight * 32 + 18),
                 Color.White);
             // Draw board in a 2 deep Height,Width for loop
-            for(int y = 0; y < map.MapHeight; y++)
+            for (int y = 0; y < map.MapHeight; y++)
             {
-                for(int x = 0; x < map.MapWidth; x++)
+                for (int x = 0; x < map.MapWidth; x++)
                 {
                     if (map.Rows[y].Columns[x].TileID == wall)
-                        spriteBatch.Draw(wallTexture,
-                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32), 
+                        _spriteBatch.Draw(wallTexture,
+                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Wall
-                    else if (map.Rows[y].Columns[x].TileID == floor || map.Rows[y].Columns[x].TileID == portal)
-                        spriteBatch.Draw(floorTexture,
-                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32), 
+                    else if (map.Rows[y].Columns[x].TileID == floor)
+                        _spriteBatch.Draw(floorTexture,
+                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Floor
                     else if (map.Rows[y].Columns[x].TileID == redKey)
-                        spriteBatch.Draw(redKeyTexture,
-                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32), 
+                        _spriteBatch.Draw(redKeyTexture,
+                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Red key
                     else if (map.Rows[y].Columns[x].TileID == blueKey)
-                        spriteBatch.Draw(blueKeyTexture,
+                        _spriteBatch.Draw(blueKeyTexture,
                             new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Blue key
                     else if (map.Rows[y].Columns[x].TileID == greenKey)
-                        spriteBatch.Draw(greenKeyTexture,
+                        _spriteBatch.Draw(greenKeyTexture,
                             new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Green key
                     else if (map.Rows[y].Columns[x].TileID == redDoor)
-                        spriteBatch.Draw(redDoorTexture,
+                        _spriteBatch.Draw(redDoorTexture,
                             new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Red Door
                     else if (map.Rows[y].Columns[x].TileID == blueDoor)
-                        spriteBatch.Draw(blueDoorTexture,
+                        _spriteBatch.Draw(blueDoorTexture,
                             new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Blue Door
                     else if (map.Rows[y].Columns[x].TileID == greenDoor)
-                        spriteBatch.Draw(greenDoorTexture,
+                        _spriteBatch.Draw(greenDoorTexture,
                             new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
                             Color.White); // Green Door
+                    else if (map.Rows[y].Columns[x].TileID == chip)
+                        _spriteBatch.Draw(chipTexture,
+                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
+                            Color.White); // Chip
+                    else if (map.Rows[y].Columns[x].TileID == portal)
+                        _spriteBatch.Draw(portalTexture,
+                            new Rectangle(x * 32 + (int)boardOffset.X, y * 32 + (int)boardOffset.Y, 32, 32),
+                            Color.White); // Portal
                 }
             }
             // Draw text for score
-            spriteBatch.DrawString(Font1,
-                "PlaceHolder",
-                new Vector2((2 * (int)boardOffset.Y) + map.MapWidth * 32, (int)boardOffset.X), 
+            _spriteBatch.DrawString(_menuFont,
+                string.Format("Chips: {0}", _player.inventory.chips),
+                new Vector2((2 * (int)boardOffset.Y) + map.MapWidth * 32, (int)boardOffset.X),
                 Color.Black);
-            // Draw chip
-            spriteBatch.Draw(chipTexture,
-                new Rectangle((int)player.X * 32 + (int)boardOffset.X, (int)player.Y * 32 + (int)boardOffset.Y, 32, 32), 
+            // Draw Player
+            _spriteBatch.Draw(map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID != portal ? playerTexture : playerPortalTexture,
+                new Rectangle((int)_player.Position.X * 32 + (int)boardOffset.X, (int)_player.Position.Y * 32 + (int)boardOffset.Y, 32, 32),
                 Color.White);
             // Draw red key
-            spriteBatch.Draw((inv.redKeys > 0) ? redKeyTexture : floorTexture,
+            _spriteBatch.Draw((_player.inventory.redKeys > 0) ? redKeyTexture : floorTexture,
                 new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32, (int)boardOffset.X + 50, 32, 32),
                 Color.White);
-            spriteBatch.Draw((inv.redKeys > 1) ? redKeyTexture : floorTexture,
+            _spriteBatch.Draw((_player.inventory.redKeys > 1) ? redKeyTexture : floorTexture,
                 new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32, (int)boardOffset.X + 82, 32, 32),
                 Color.White);
             // Draw blue key
-            spriteBatch.Draw((inv.blueKeys > 0) ? blueKeyTexture : floorTexture,
+            _spriteBatch.Draw((_player.inventory.blueKeys > 0) ? blueKeyTexture : floorTexture,
                 new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32 + 32, (int)boardOffset.X + 50, 32, 32),
                 Color.White);
-            spriteBatch.Draw((inv.blueKeys > 1) ? blueKeyTexture : floorTexture,
+            _spriteBatch.Draw((_player.inventory.blueKeys > 1) ? blueKeyTexture : floorTexture,
                 new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32 + 32, (int)boardOffset.X + 82, 32, 32),
                 Color.White);
             // Draw green key
-            spriteBatch.Draw((inv.greenKeys > 0) ? greenKeyTexture : floorTexture,
+            _spriteBatch.Draw((_player.inventory.greenKeys > 0) ? greenKeyTexture : floorTexture,
                 new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32 + (2 * 32), (int)boardOffset.X + 50, 32, 32),
                 Color.White);
-            spriteBatch.Draw((inv.greenKeys > 1) ? greenKeyTexture : floorTexture,
-                new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32 + (2*32), (int)boardOffset.X + 82, 32, 32),
+            _spriteBatch.Draw((_player.inventory.greenKeys > 1) ? greenKeyTexture : floorTexture,
+                new Rectangle((2 * (int)boardOffset.Y) + map.MapWidth * 32 + (2 * 32), (int)boardOffset.X + 82, 32, 32),
                 Color.White);
-            spriteBatch.End();
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

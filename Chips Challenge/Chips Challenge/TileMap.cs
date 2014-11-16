@@ -31,39 +31,72 @@ namespace TileEngine
         public Point startPos;
         public TileMap(string levelFile)
         {
-            for (int y = 0; y < MapHeight; y++)
-            {
-                MapRow thisRow = new MapRow();
-                for (int x = 0; x < MapWidth; x++)
-                {
-                    thisRow.Columns.Add(new MapCell(0));
-                }
-                Rows.Add(thisRow);
-            }
-
-            // Create Sample Map Data
+            // Create Map Data
             using (StreamReader sr = new StreamReader(levelFile))
             {
+                string Line;
                 MapHeight = int.Parse(sr.ReadLine());
                 MapWidth = int.Parse(sr.ReadLine());
-                chipCount = int.Parse(sr.ReadLine());
-                for(int h = 0; h < MapHeight; h++)
+                for (int h = 0; h < MapHeight; h++)
                 {
-                    string Line = sr.ReadLine();
-                    for(int w = 0; w < MapWidth; w++)
+                    Line = sr.ReadLine();
+                    MapRow thisRow = new MapRow();
+                    for (int w = 0; w < MapWidth; w++)
                     {
                         if (Line[w] == 83)
                         {
                             startPos = new Point(w, h);
-                            Rows[h].Columns[w].TileID = 48;
+                            thisRow.Columns.Add(new MapCell(48));
                         }
                         else
-                            Rows[h].Columns[w].TileID = Line[w];
+                            thisRow.Columns.Add(new MapCell(Line[w]));
+                        if (Line[w] == 42)
+                            chipCount++;
+
                     }
+                    Rows.Add(thisRow);
                 }
-                        
+
             }
-            // End Create Sample Map Data
+
+            // End Map Data
+
+            //for (int y = 0; y < MapHeight; y++)
+            //{
+            //    MapRow thisRow = new MapRow();
+            //    for (int x = 0; x < MapWidth; x++)
+            //    {
+            //        thisRow.Columns.Add(new MapCell(0));
+            //    }
+            //    Rows.Add(thisRow);
+            //}
+
+            //// Create Map Data
+            //using (StreamReader sr = new StreamReader(levelFile))
+            //{
+            //    string Line;
+            //    MapHeight = int.Parse(sr.ReadLine());
+            //    MapWidth = int.Parse(sr.ReadLine());
+            //    for(int h = 0; h < MapHeight; h++)
+            //    {
+            //        Line = sr.ReadLine();
+            //        for(int w = 0; w < MapWidth; w++)
+            //        {
+            //            if (Line[w] == 83)
+            //            {
+            //                startPos = new Point(w, h);
+            //                Rows[h].Columns[w].TileID = 48;
+            //            }
+            //            else
+            //                Rows[h].Columns[w].TileID = Line[w];
+            //            if (Line[w] == 42)
+            //                chipCount++;
+
+            //        }
+            //    }
+                        
+            //}
+            //// End Map Data
         }
 
     }

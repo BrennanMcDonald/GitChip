@@ -15,3 +15,23 @@ E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Conte
 E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb
 E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb
 E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.csprojResolveAssemblyReference.cache
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\wall.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\floor.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redKey.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\chip.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redDoor.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueKey.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueDoor.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenDoor.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\Font1.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Chips Challenge.exe
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Chips Challenge.pdb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.csprojResolveAssemblyReference.cache
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.exe
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\obj\x86\Debug\Chips Challenge.pdb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\player.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\portal.xnb
+E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\portalPlayer.xnb

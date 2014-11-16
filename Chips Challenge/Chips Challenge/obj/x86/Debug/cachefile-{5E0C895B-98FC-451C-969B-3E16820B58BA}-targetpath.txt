@@ -9,3 +9,6 @@ Content\greenDoor.xnb
 Content\greenKey.xnb
 Content\bg.xnb
 Content\Font1.xnb
+Content\player.xnb
+Content\portal.xnb
+Content\portalPlayer.xnb
