@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\wall.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\wall.xnb</Output>
       <Time>2014-11-12T17:54:06.6947856-05:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\floor.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\floor.xnb</Output>
       <Time>2014-11-12T17:54:05.5005403-05:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redKey.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redKey.xnb</Output>
       <Time>2014-11-12T17:54:06.0504332-05:00</Time>
     </Item>
     <Item>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\chip.xnb</Output>
-      <Time>2014-11-12T17:54:06.6769591-05:00</Time>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\chip.xnb</Output>
+      <Time>2014-11-15T23:07:50.1247032-05:00</Time>
     </Item>
     <Item>
       <Source>redDoor.png</Source>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redDoor.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\redDoor.xnb</Output>
       <Time>2014-11-12T21:38:44.9436977-05:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueKey.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueKey.xnb</Output>
       <Time>2014-11-12T21:57:19.7063799-05:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueDoor.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\blueDoor.xnb</Output>
       <Time>2014-11-12T22:02:24.2935215-05:00</Time>
     </Item>
     <Item>
@@ -70,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenDoor.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenDoor.xnb</Output>
       <Time>2014-11-12T22:08:31.4880155-05:00</Time>
     </Item>
     <Item>
@@ -79,7 +79,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\greenKey.xnb</Output>
       <Time>2014-11-12T22:17:04.1716513-05:00</Time>
     </Item>
     <Item>
@@ -88,7 +88,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\bg.xnb</Output>
       <Time>2014-11-13T11:38:17.4202433-05:00</Time>
     </Item>
     <Item>
@@ -97,8 +97,35 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\Font1.xnb</Output>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\Font1.xnb</Output>
       <Time>2014-11-12T19:30:41.66777-05:00</Time>
+    </Item>
+    <Item>
+      <Source>player.png</Source>
+      <Name>player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\player.xnb</Output>
+      <Time>2014-11-12T17:54:06.6769591-05:00</Time>
+    </Item>
+    <Item>
+      <Source>portal.png</Source>
+      <Name>portal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\portal.xnb</Output>
+      <Time>2014-11-15T23:17:38.2667656-05:00</Time>
+    </Item>
+    <Item>
+      <Source>portalPlayer.png</Source>
+      <Name>portalPlayer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\portalPlayer.xnb</Output>
+      <Time>2014-11-15T23:27:20.0696524-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -106,10 +133,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips ChallengeContent\</RootDirectory>
-      <LoggerRootDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\</LoggerRootDirectory>
-      <IntermediateDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips ChallengeContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>E:\XNA Stuff\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips ChallengeContent\</RootDirectory>
+      <LoggerRootDirectory>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips ChallengeContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\ChipsChallenge\Chips Challenge\Chips Challenge\Chips Challenge\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
