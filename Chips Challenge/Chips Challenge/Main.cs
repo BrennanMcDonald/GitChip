@@ -21,11 +21,16 @@ using TileEngine;
 
 namespace Chips_Challenge
 {
+    struct Player
+    {
+        public Inventory inventory;
+        public Point Position;
+    }
     public class ChipsChallengeMain : Microsoft.Xna.Framework.Game
     {
         // Constants to deal with tile values
         // TODO: Create a Map Tile struct that has a texture, numerical value and ASCII value
-        const int floor = 48,
+        public const int floor = 48,
             wall = 53,
             redKey = 49,
             redDoor = 54,
@@ -385,9 +390,10 @@ namespace Chips_Challenge
             }
             // Draw text for score
             _spriteBatch.DrawString(_menuFont,
-                string.Format("Chips: {0}", _player.inventory.chips),
+                string.Format("Chips: {0} / {1}", _player.inventory.chips, map.chipCount),
                 new Vector2((2 * (int)boardOffset.Y) + map.MapWidth * 32, (int)boardOffset.X),
                 Color.Black);
+
             // Draw Player
             _spriteBatch.Draw(map.Rows[(int)_player.Position.Y].Columns[(int)_player.Position.X].TileID != portal ? playerTexture : playerPortalTexture,
                 new Rectangle((int)_player.Position.X * 32 + (int)boardOffset.X, (int)_player.Position.Y * 32 + (int)boardOffset.Y, 32, 32),
